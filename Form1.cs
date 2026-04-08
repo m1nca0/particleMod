@@ -2,36 +2,40 @@ namespace particleMod
 {
     public partial class Form1 : Form
     {
-        List<Particle> particles = new();
-        Emitter emitter = new Emitter();
+        List<Emitter> emitters = new List<Emitter>();
+        Emitter emitter;
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            emitter = new TopEmitter
+            this.emitter = new Emitter
             {
-                Width = picDisplay.Width,
-                GravitationY = 0.25f
-            };
-            emitter.impactPoints.Add(new GravityPoint
-            {
-                X = (float)(picDisplay.Width * 0.25),
-                Y = picDisplay.Height / 2
-            });
-
-            emitter.impactPoints.Add(new AntiGravityPoint
-            {
+                Direction = 0,
+                Spreading = 10,
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ColorFrom = Color.Gold,
+                ColorTo = Color.FromArgb(0, Color.Red),
+                ParticlesPerTick = 10,
                 X = picDisplay.Width / 2,
-                Y = picDisplay.Height / 2
-            });
+                Y = picDisplay.Height / 2,
+            };
 
+            emitters.Add(this.emitter);
+            // добавил гравитон
             emitter.impactPoints.Add(new GravityPoint
             {
-                X = (float)(picDisplay.Width * 0.75),
-                Y = picDisplay.Height / 2
+                X = picDisplay.Width / 2 + 100,
+                Y = picDisplay.Height / 2,
             });
 
+            // добавил второй гравитон
+            emitter.impactPoints.Add(new GravityPoint
+            {
+                X = picDisplay.Width / 2 - 100,
+                Y = picDisplay.Height / 2,
+            });
         }
 
 
@@ -55,6 +59,13 @@ namespace particleMod
         {
             emitter.MousePositionX = e.X;
             emitter.MousePositionY = e.Y;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            emitter.Direction = tbDirection.Value;
+            txtDirection.Text = $"{tbDirection.Value}°";
+
         }
     }
 }
