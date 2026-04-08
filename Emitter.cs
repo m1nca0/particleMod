@@ -4,11 +4,13 @@ using System.Text;
 
 namespace particleMod
 {
-    internal class Emitter
+    public class Emitter
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
         List<Particle> particles = new List<Particle>();
+
+        public int ParticlesCount = 1;
         public int MousePositionX;
         public int MousePositionY;
 
@@ -22,19 +24,7 @@ namespace particleMod
                 particle.Life -= 1;
                 if (particle.Life < 0)
                 {
-
-                    particle.Life = 20 + Particle.rand.Next(100);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    var direction = (double)Particle.rand.Next(360);
-                    var speed = 1 + Particle.rand.Next(10);
-
-                    particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-                    particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-
-
-                    particle.Radius = 2 + Particle.rand.Next(10);
+                    ResetParticle(particle);
                 }
                 else
                 {
@@ -53,15 +43,14 @@ namespace particleMod
 
             for (var i = 0; i < 10; i++)
             {
-                if (particles.Count < 500)
+                if (particles.Count < ParticlesCount)
                 {
-
                     var particle = new ParticleColorful();
+                    particle.FromColor = Color.White;
+                    particle.ToColor = Color.FromArgb(0, Color.Black);
 
-                    particle.FromColor = Color.Yellow;
-                    particle.ToColor = Color.FromArgb(0, Color.Magenta);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
+                    ResetParticle(particle);
+
                     particles.Add(particle);
                 }
                 else break;
@@ -78,6 +67,36 @@ namespace particleMod
             {
                 point.Render(g);
             }
+        }
+        public virtual void ResetParticle(Particle particle)
+        {
+            particle.Life = 20 + Particle.rand.Next(100);
+            particle.X = MousePositionX;
+            particle.Y = MousePositionY;
+
+            var direction = (double)Particle.rand.Next(360);
+            var speed = 1 + Particle.rand.Next(10);
+
+            particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
+
+            particle.Radius = 2 + Particle.rand.Next(10);
+        }
+    }
+    public class TopEmitter : Emitter
+    {
+        public int Width;
+
+        public override void ResetParticle(Particle particle)
+        {
+            base.ResetParticle(particle);
+
+           
+            particle.X = Particle.rand.Next(Width);
+            particle.Y = 0; 
+
+            particle.SpeedY = 1;
+            particle.SpeedX = Particle.rand.Next(-2, 2);
         }
     }
 }
