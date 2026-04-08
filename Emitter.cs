@@ -6,14 +6,14 @@ namespace particleMod
 {
     internal class Emitter
     {
-        public List<Point> gravityPoints = new List<Point>();
+        public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
         public int MousePositionY;
 
         public float GravitationX = 0;
-        public float GravitationY = 3;
+        public float GravitationY = 0;
 
         public void UpdateState()
         {
@@ -38,14 +38,10 @@ namespace particleMod
                 }
                 else
                 {
-                    float gX = gravityPoints[0].X - particle.X;
-                    float gY = gravityPoints[0].Y - particle.Y;
-
-                    float r2 = gX * gX + gY * gY;
-                    float M = 100; 
-
-                    particle.SpeedX += (gX) * M / r2;
-                    particle.SpeedY += (gY) * M / r2;
+                    foreach (var point in impactPoints)
+                    {
+                        point.ImpactParticle(particle);
+                    }
 
                     particle.SpeedX += GravitationX;
                     particle.SpeedY += GravitationY;
@@ -78,15 +74,9 @@ namespace particleMod
             {
                 particle.Draw(g);
             }
-            foreach (var point in gravityPoints)
+            foreach (var point in impactPoints)
             {
-                g.FillEllipse(
-                    new SolidBrush(Color.Red),
-                    point.X - 5,
-                    point.Y - 5,
-                    10,
-                    10
-                );
+                point.Render(g);
             }
         }
     }
