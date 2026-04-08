@@ -6,9 +6,14 @@ namespace particleMod
 {
     internal class Emitter
     {
+        public List<Point> gravityPoints = new List<Point>();
+
         List<Particle> particles = new List<Particle>();
         public int MousePositionX;
         public int MousePositionY;
+
+        public float GravitationX = 0;
+        public float GravitationY = 3;
 
         public void UpdateState()
         {
@@ -33,6 +38,18 @@ namespace particleMod
                 }
                 else
                 {
+                    float gX = gravityPoints[0].X - particle.X;
+                    float gY = gravityPoints[0].Y - particle.Y;
+
+                    float r2 = gX * gX + gY * gY;
+                    float M = 100; 
+
+                    particle.SpeedX += (gX) * M / r2;
+                    particle.SpeedY += (gY) * M / r2;
+
+                    particle.SpeedX += GravitationX;
+                    particle.SpeedY += GravitationY;
+
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
                 }
@@ -57,11 +74,19 @@ namespace particleMod
 
         public void Render(Graphics g)
         {
-            // ну тут так и быть уж сам впишу...
-            // это то же самое что на форме в методе Render
             foreach (var particle in particles)
             {
                 particle.Draw(g);
+            }
+            foreach (var point in gravityPoints)
+            {
+                g.FillEllipse(
+                    new SolidBrush(Color.Red),
+                    point.X - 5,
+                    point.Y - 5,
+                    10,
+                    10
+                );
             }
         }
     }
