@@ -4,6 +4,9 @@ namespace particleMod
     {
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
+
+        GravityPoint point1;
+        GravityPoint point2;
         public Form1()
         {
             InitializeComponent();
@@ -23,19 +26,20 @@ namespace particleMod
             };
 
             emitters.Add(this.emitter);
-            // добавил гравитон
-            emitter.impactPoints.Add(new GravityPoint
+
+            point1 = new GravityPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
-            });
-
-            // добавил второй гравитон
-            emitter.impactPoints.Add(new GravityPoint
+            };
+            point2 = new GravityPoint
             {
                 X = picDisplay.Width / 2 - 100,
                 Y = picDisplay.Height / 2,
-            });
+            };
+
+            emitter.impactPoints.Add(point1);
+            emitter.impactPoints.Add(point2);
         }
 
 
@@ -57,8 +61,14 @@ namespace particleMod
         private int MousePositionY = 0;
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
+            foreach (var emitter in emitters)
+            {
+                emitter.MousePositionX = e.X;
+                emitter.MousePositionY = e.Y;
+            }
+
+            point2.X = e.X;
+            point2.Y = e.Y;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -66,6 +76,24 @@ namespace particleMod
             emitter.Direction = tbDirection.Value;
             txtDirection.Text = $"{tbDirection.Value}°";
 
+        }
+
+        private void tbGravity_Scroll(object sender, EventArgs e)
+        {
+            emitter.GravitationX = tbGravity.Value / 10;
+            emitter.GravitationY = tbGravity.Value / 10;
+            txtGravity.Text = $"{tbGravity.Value / 10}";
+        }
+
+        private void tbGravityPoint_Scroll(object sender, EventArgs e)
+        {
+            point1.Power = tbGravityPoint.Value;
+
+        }
+
+        private void tbGravityPoint2_Scroll(object sender, EventArgs e)
+        {
+            point2.Power = tbGravityPoint2.Value;
         }
     }
 }
