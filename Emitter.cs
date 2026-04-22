@@ -33,7 +33,7 @@ namespace particleMod
 
         public Color ColorFrom = Color.White;
         public Color ColorTo = Color.FromArgb(0, Color.Black);
-        public virtual Particle CreateParticle()
+        public virtual ParticleColorful CreateParticle()
         {
             var particle = new ParticleColorful();
             particle.FromColor = ColorFrom;
@@ -46,13 +46,13 @@ namespace particleMod
             int particlesToCreate = ParticlesPerTick;
             foreach (var particle in particles)
             {
-                if (particle.Life <= 0) 
+                if (particle.Life < 0) 
                 {
-                    if (particlesToCreate > 0)
-                    {
-                        particlesToCreate -= 1; 
+                    //if (particlesToCreate > 0)
+                    //{
+                    //    particlesToCreate -= 1; 
                         ResetParticle(particle);
-                    }
+                    //}
                 }
                 else
                 {
@@ -93,6 +93,8 @@ namespace particleMod
         public virtual void ResetParticle(ParticleColorful particle)
         {
             particle.Life = ParticleColorful.rand.Next(LifeMin, LifeMax);
+            particle.FromColor = Color.White;
+            particle.ToColor = Color.White;
 
             particle.X = MousePositionX;
             particle.Y = MousePositionY;
@@ -122,7 +124,7 @@ namespace particleMod
             particle.Y = 0; 
 
             particle.SpeedY = 1;
-            particle.SpeedX = Particle.rand.Next(-2, 2);
+            particle.SpeedX = ParticleColorful.rand.Next(-2, 2);
         }
     }
 }

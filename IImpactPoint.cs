@@ -83,9 +83,9 @@ namespace particleMod
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
-            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+            double r2 = Math.Sqrt(gX * gX + gY * gY);
 
-            if ( gX < Radius && gY < Radius )
+            if (r2 < Radius/2)
             {
                 particle.FromColor = Color.Red;
                 particle.ToColor = Color.Red;
