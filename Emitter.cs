@@ -93,8 +93,8 @@ namespace particleMod
         public virtual void ResetParticle(ParticleColorful particle)
         {
             particle.Life = ParticleColorful.rand.Next(LifeMin, LifeMax);
-            particle.FromColor = Color.White;
-            particle.ToColor = Color.White;
+            particle.FromColor = Color.LightBlue;
+            particle.ToColor = Color.LightBlue;
 
             particle.X = MousePositionX;
             particle.Y = MousePositionY;

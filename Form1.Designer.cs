@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            picDisplay = new PictureBox();
             timer1 = new System.Windows.Forms.Timer(components);
             tbDirection = new TrackBar();
             txtDirection = new TextBox();
@@ -42,21 +41,13 @@
             tbGravityPoint2 = new TrackBar();
             label4 = new Label();
             checkBox1 = new CheckBox();
-            ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
+            picDisplay = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)tbDirection).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             SuspendLayout();
-            // 
-            // picDisplay
-            // 
-            picDisplay.Location = new Point(12, 12);
-            picDisplay.Name = "picDisplay";
-            picDisplay.Size = new Size(885, 516);
-            picDisplay.TabIndex = 0;
-            picDisplay.TabStop = false;
-            picDisplay.MouseMove += picDisplay_MouseMove;
             // 
             // timer1
             // 
@@ -160,11 +151,20 @@
             checkBox1.Text = "Следование за курсором";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // picDisplay
+            // 
+            picDisplay.Location = new Point(12, 12);
+            picDisplay.Name = "picDisplay";
+            picDisplay.Size = new Size(885, 494);
+            picDisplay.TabIndex = 13;
+            picDisplay.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1255, 532);
+            ClientSize = new Size(1255, 518);
+            Controls.Add(picDisplay);
             Controls.Add(checkBox1);
             Controls.Add(label4);
             Controls.Add(tbGravityPoint2);
@@ -176,21 +176,19 @@
             Controls.Add(tbGravity);
             Controls.Add(txtDirection);
             Controls.Add(tbDirection);
-            Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)tbDirection).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbGravity).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private PictureBox picDisplay;
         private System.Windows.Forms.Timer timer1;
         private TrackBar tbDirection;
         private TextBox txtDirection;
@@ -203,5 +201,6 @@
         private TrackBar tbGravityPoint2;
         private Label label4;
         private CheckBox checkBox1;
+        private PictureBox picDisplay;
     }
 }

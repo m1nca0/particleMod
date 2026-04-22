@@ -50,7 +50,7 @@ namespace particleMod
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.Black);
+                g.Clear(Color.White);
                 emitter.Render(g);
             }
 
@@ -61,7 +61,7 @@ namespace particleMod
         {
             foreach (var emitter in emitters)
             {
-                if(checkBox1.Checked == true)
+                if (checkBox1.Checked == true)
                 {
                     emitter.MousePositionX = e.X;
                     emitter.MousePositionY = e.Y;
@@ -103,5 +103,6 @@ namespace particleMod
         {
             point2.Power = tbGravityPoint2.Value;
         }
+
     }
 }

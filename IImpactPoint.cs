@@ -87,8 +87,8 @@ namespace particleMod
 
             if (r2 < Radius/2)
             {
-                particle.FromColor = Color.Red;
-                particle.ToColor = Color.Red;
+                particle.FromColor = Color.LightGoldenrodYellow;
+                particle.ToColor = Color.LightGoldenrodYellow;
             }
 
         }
