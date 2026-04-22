@@ -8,7 +8,7 @@ namespace particleMod
     {
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
 
-        List<Particle> particles = new List<Particle>();
+        List<ParticleColorful> particles = new List<ParticleColorful>();
 
         public int ParticlesCount = 500;
         public int MousePositionX;
@@ -74,8 +74,8 @@ namespace particleMod
             {
                 particlesToCreate -= 1;
                 var particle = CreateParticle();
-                ResetParticle(particle);
-                particles.Add(particle);
+                ResetParticle((ParticleColorful)particle);
+                particles.Add((ParticleColorful)particle);
             }
         }
 
@@ -90,35 +90,35 @@ namespace particleMod
                 point.Render(g);
             }
         }
-        public virtual void ResetParticle(Particle particle)
+        public virtual void ResetParticle(ParticleColorful particle)
         {
-            particle.Life = Particle.rand.Next(LifeMin, LifeMax);
+            particle.Life = ParticleColorful.rand.Next(LifeMin, LifeMax);
 
-            particle.X = X;
-            particle.Y = Y;
+            particle.X = MousePositionX;
+            particle.Y = MousePositionY;
 
             var direction = Direction
-                + (double)Particle.rand.Next(Spreading)
+                + (double)ParticleColorful.rand.Next(Spreading)
                 - Spreading / 2;
 
-            var speed = Particle.rand.Next(SpeedMin, SpeedMax);
+            var speed = ParticleColorful.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
+            particle.Radius = ParticleColorful.rand.Next(RadiusMin, RadiusMax);
         }
     }
     public class TopEmitter : Emitter
     {
         public int Width;
 
-        public override void ResetParticle(Particle particle)
+        public override void ResetParticle(ParticleColorful particle)
         {
             base.ResetParticle(particle);
 
            
-            particle.X = Particle.rand.Next(Width);
+            particle.X = ParticleColorful.rand.Next(Width);
             particle.Y = 0; 
 
             particle.SpeedY = 1;

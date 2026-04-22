@@ -5,7 +5,7 @@ namespace particleMod
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        GravityPoint point1;
+        RecolorPoint point1;
         GravityPoint point2;
         public Form1()
         {
@@ -27,7 +27,7 @@ namespace particleMod
 
             emitters.Add(this.emitter);
 
-            point1 = new GravityPoint
+            point1 = new RecolorPoint
             {
                 X = picDisplay.Width / 2 + 100,
                 Y = picDisplay.Height / 2,
@@ -57,14 +57,22 @@ namespace particleMod
             picDisplay.Invalidate();
         }
 
-        private int MousePositionX = 0;
-        private int MousePositionY = 0;
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
             foreach (var emitter in emitters)
             {
-                emitter.MousePositionX = e.X;
-                emitter.MousePositionY = e.Y;
+                if(checkBox1.Checked == true)
+                {
+                    emitter.MousePositionX = e.X;
+                    emitter.MousePositionY = e.Y;
+                    point2.Power = 0;
+                }
+                else
+                {
+                    emitter.MousePositionX = picDisplay.Image.Width / 2;
+                    emitter.MousePositionY = picDisplay.Image.Height / 2;
+                }
+
             }
 
             point2.X = e.X;
@@ -87,7 +95,7 @@ namespace particleMod
 
         private void tbGravityPoint_Scroll(object sender, EventArgs e)
         {
-            point1.Power = tbGravityPoint.Value;
+            point1.Radius = tbGravityPoint.Value;
 
         }
 

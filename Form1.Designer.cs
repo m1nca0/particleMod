@@ -41,6 +41,7 @@
             label3 = new Label();
             tbGravityPoint2 = new TrackBar();
             label4 = new Label();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbDirection).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravity).BeginInit();
@@ -149,11 +150,22 @@
             label4.TabIndex = 10;
             label4.Text = "Гравитация точки 2";
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(907, 412);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(164, 19);
+            checkBox1.TabIndex = 12;
+            checkBox1.Text = "Следование за курсором";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1255, 532);
+            Controls.Add(checkBox1);
             Controls.Add(label4);
             Controls.Add(tbGravityPoint2);
             Controls.Add(label3);
@@ -190,5 +202,6 @@
         private Label label3;
         private TrackBar tbGravityPoint2;
         private Label label4;
+        private CheckBox checkBox1;
     }
 }

@@ -9,7 +9,7 @@ namespace particleMod
         public float X;
         public float Y;
 
-        public abstract void ImpactParticle(Particle particle);
+        public abstract void ImpactParticle(ParticleColorful particle);
 
         public virtual void Render(Graphics g)
         {
@@ -26,7 +26,7 @@ namespace particleMod
     {
         public int Power = 100;
 
-        public override void ImpactParticle(Particle particle)
+        public override void ImpactParticle(ParticleColorful particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
@@ -56,14 +56,51 @@ namespace particleMod
         public int Power = 100;
 
        
-        public override void ImpactParticle(Particle particle)
+        public override void ImpactParticle(ParticleColorful particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
+            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
+            particle.SpeedX -= (float)(gX * Power / r2);
+            particle.SpeedY -= (float)(gY * Power / r2);
+
+        }
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.Red),
+                   X - Power / 2,
+                   Y - Power / 2,
+                   Power,
+                   Power
+               );
+        }
+    }
+    public class RecolorPoint : IImpactPoint 
+    {
+        public int Radius = 100;
+        public override void ImpactParticle(ParticleColorful particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
             float r2 = (float)Math.Max(100, gX * gX + gY * gY);
 
-            particle.SpeedX -= gX * Power / r2;
-            particle.SpeedY -= gY * Power / r2;
+            if ( gX < Radius && gY < Radius )
+            {
+                particle.FromColor = Color.Red;
+                particle.ToColor = Color.Red;
+            }
+
+        }
+        public override void Render(Graphics g)
+        {
+            g.DrawEllipse(
+                   new Pen(Color.Red),
+                   X - Radius / 2,
+                   Y - Radius / 2,
+                   Radius,
+                   Radius
+               );
         }
     }
 }
