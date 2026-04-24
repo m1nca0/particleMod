@@ -42,18 +42,29 @@
             tbGravityPoint2 = new TrackBar();
             label4 = new Label();
             checkBox1 = new CheckBox();
+            checkBox2 = new CheckBox();
+            tbSpeedRotation = new TrackBar();
+            txtSpeedRotation = new TextBox();
+            tbSize = new TrackBar();
+            label5 = new Label();
+            txtSize = new TextBox();
             ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbDirection).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbSpeedRotation).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbSize).BeginInit();
             SuspendLayout();
             // 
             // picDisplay
             // 
+            picDisplay.BackColor = Color.Transparent;
+            picDisplay.InitialImage = null;
             picDisplay.Location = new Point(12, 12);
             picDisplay.Name = "picDisplay";
-            picDisplay.Size = new Size(885, 516);
+            picDisplay.Size = new Size(878, 519);
+            picDisplay.SizeMode = PictureBoxSizeMode.StretchImage;
             picDisplay.TabIndex = 0;
             picDisplay.TabStop = false;
             picDisplay.MouseMove += picDisplay_MouseMove;
@@ -71,11 +82,12 @@
             tbDirection.Name = "tbDirection";
             tbDirection.Size = new Size(275, 45);
             tbDirection.TabIndex = 1;
+            tbDirection.Value = 1;
             tbDirection.Scroll += trackBar1_Scroll;
             // 
             // txtDirection
             // 
-            txtDirection.Location = new Point(1184, 39);
+            txtDirection.Location = new Point(1184, 30);
             txtDirection.Name = "txtDirection";
             txtDirection.Size = new Size(59, 23);
             txtDirection.TabIndex = 2;
@@ -91,7 +103,7 @@
             // 
             // txtGravity
             // 
-            txtGravity.Location = new Point(1184, 105);
+            txtGravity.Location = new Point(1184, 96);
             txtGravity.Name = "txtGravity";
             txtGravity.Size = new Size(59, 23);
             txtGravity.TabIndex = 4;
@@ -160,11 +172,71 @@
             checkBox1.Text = "Следование за курсором";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(907, 374);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(87, 19);
+            checkBox2.TabIndex = 13;
+            checkBox2.Text = "Вокруг оси";
+            checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // tbSpeedRotation
+            // 
+            tbSpeedRotation.Location = new Point(1000, 361);
+            tbSpeedRotation.Maximum = 20;
+            tbSpeedRotation.Name = "tbSpeedRotation";
+            tbSpeedRotation.Size = new Size(178, 45);
+            tbSpeedRotation.TabIndex = 14;
+            tbSpeedRotation.Scroll += tbSpeedRotation_Scroll;
+            // 
+            // txtSpeedRotation
+            // 
+            txtSpeedRotation.Location = new Point(1184, 361);
+            txtSpeedRotation.Name = "txtSpeedRotation";
+            txtSpeedRotation.Size = new Size(59, 23);
+            txtSpeedRotation.TabIndex = 15;
+            // 
+            // tbSize
+            // 
+            tbSize.Location = new Point(907, 162);
+            tbSize.Maximum = 20;
+            tbSize.Minimum = 2;
+            tbSize.Name = "tbSize";
+            tbSize.Size = new Size(271, 45);
+            tbSize.TabIndex = 16;
+            tbSize.Value = 2;
+            tbSize.Scroll += tbSize_Scroll;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(903, 144);
+            label5.Name = "label5";
+            label5.Size = new Size(47, 15);
+            label5.TabIndex = 17;
+            label5.Text = "Размер";
+            // 
+            // txtSize
+            // 
+            txtSize.Location = new Point(1184, 162);
+            txtSize.Name = "txtSize";
+            txtSize.Size = new Size(59, 23);
+            txtSize.TabIndex = 18;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1255, 532);
+            ClientSize = new Size(1255, 539);
+            Controls.Add(txtSize);
+            Controls.Add(label5);
+            Controls.Add(tbSize);
+            Controls.Add(txtSpeedRotation);
+            Controls.Add(tbSpeedRotation);
+            Controls.Add(checkBox2);
+            Controls.Add(picDisplay);
             Controls.Add(checkBox1);
             Controls.Add(label4);
             Controls.Add(tbGravityPoint2);
@@ -176,7 +248,6 @@
             Controls.Add(tbGravity);
             Controls.Add(txtDirection);
             Controls.Add(tbDirection);
-            Controls.Add(picDisplay);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
@@ -184,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)tbGravity).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbGravityPoint2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbSpeedRotation).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbSize).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -203,5 +276,11 @@
         private TrackBar tbGravityPoint2;
         private Label label4;
         private CheckBox checkBox1;
+        private CheckBox checkBox2;
+        private TrackBar tbSpeedRotation;
+        private TextBox txtSpeedRotation;
+        private TrackBar tbSize;
+        private Label label5;
+        private TextBox txtSize;
     }
 }

@@ -78,24 +78,27 @@ namespace particleMod
     }
     public class RecolorPoint : IImpactPoint 
     {
+        public Color FromColor;
+        public Color ToColor;
         public int Radius = 100;
         public override void ImpactParticle(ParticleColorful particle)
         {
+
             float gX = X - particle.X;
             float gY = Y - particle.Y;
             double r2 = Math.Sqrt(gX * gX + gY * gY);
 
             if (r2 < Radius/2)
             {
-                particle.FromColor = Color.Red;
-                particle.ToColor = Color.Red;
+                particle.FromColor = FromColor;
+                particle.ToColor = ToColor;
             }
 
         }
         public override void Render(Graphics g)
         {
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(FromColor),
                    X - Radius / 2,
                    Y - Radius / 2,
                    Radius,

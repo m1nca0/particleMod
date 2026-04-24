@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("particleMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21e4ca4770c9f735155000eaed1ab6eb930fc471")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+257909082b594b9283435298c5314c49a8b4248e")]
 [assembly: System.Reflection.AssemblyProductAttribute("particleMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("particleMod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

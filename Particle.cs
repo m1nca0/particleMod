@@ -7,6 +7,7 @@ namespace particleMod
     public class Particle
     {
         public int Radius;
+        public int Size;
         public float X;
         public float Y;
 
@@ -24,7 +25,7 @@ namespace particleMod
             SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            Radius = 2 + rand.Next(10);
+            Radius = Size + rand.Next(10);
             Life = 20 + rand.Next(100);
         }
 

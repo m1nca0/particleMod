@@ -29,6 +29,8 @@ namespace particleMod
         public int LifeMin = 20;
         public int LifeMax = 100;
 
+        public int Size;
+
         public int ParticlesPerTick = 1;
 
         public Color ColorFrom = Color.White;
@@ -38,7 +40,7 @@ namespace particleMod
             var particle = new ParticleColorful();
             particle.FromColor = ColorFrom;
             particle.ToColor = ColorTo;
-
+            particle.Size = Size;
             return particle;
         }
         public void UpdateState()
@@ -93,8 +95,8 @@ namespace particleMod
         public virtual void ResetParticle(ParticleColorful particle)
         {
             particle.Life = ParticleColorful.rand.Next(LifeMin, LifeMax);
-            particle.FromColor = Color.White;
-            particle.ToColor = Color.White;
+            particle.FromColor = Color.LightBlue;
+            particle.ToColor = Color.LightBlue;
 
             particle.X = MousePositionX;
             particle.Y = MousePositionY;
